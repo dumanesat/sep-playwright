@@ -46,14 +46,40 @@ Then("the step2 stepper circle is green", async function () {
     );
 });
 
-Then("the upfront payment summary is displayed", async function () {});
+Then("the upfront payment summary is displayed", async function () {await expect(paymentPlanPage.basePriceAmountUnderUpfront).toBeVisible();
+await expect(paymentPlanPage.upfrontDiscountTextUnderUpfront).toBeVisible();
+await expect(paymentPlanPage.subtotalAmountUnderUpfront).toBeVisible();});
 
-When("user selects installments payment plan", async function () {});
+When("user selects installments payment plan", async function () {
+    await paymentPlanPage.selectPaymentPlan("installments");});
 
-Then("the installment payment summary is displayed", async function () {});
+Then("the installment payment summary is displayed", async function () {
+    await expect(
+      paymentPlanPage.basePriceAmountUnderInstallments,
+    ).toBeVisible();
+    await expect(
+      paymentPlanPage.installmentsNumberUnderInstallments,
+    ).toBeVisible();
+    await expect(
+      paymentPlanPage.pricePerInstallmentsAmountUnderInstallments,
+    ).toBeVisible();
+    await expect(
+      paymentPlanPage.firstMonthPaymentAmountUnderInstallments,
+    ).toBeVisible();
 
-Then("the back button is displayed", async function () {});
+});
 
-When("user clicks the back button on payment plan page", async function () {});
+Then("the back button is displayed", async function () {
+   await expect(paymentPlanPage.backButton).toBeVisible(); 
+});
 
-When("the step1 stepper circle is blue", async function () {});
+When("user clicks the back button on payment plan page", async function () {
+    await paymentPlanPage.backButton.click();
+});
+
+When("the step1 stepper circle is blue", async function () {
+    await expect(startApplicationPage.startApplicationStepCircle).toHaveCSS(
+      "background-color",
+      "rgb(1, 201, 255)",
+    );
+});
