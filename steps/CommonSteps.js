@@ -21,3 +21,7 @@ Given("user already completed the start application page", async function () {
   await startApplicationPage.clickNextButton();
   await startApplicationPage.page.waitForTimeout(3000);
 });
+Given("user already completed the payment plan page", async function () {
+  await paymentPlanPage.selectPaymentPlan("upfront");
+  await paymentPlanPage.clickNextButton();
+});
